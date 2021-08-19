@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    username: penta
+    password: stagiu
+    url: "jdbc:postgresql://localhost:5432/pentastagiu2021Java"
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
