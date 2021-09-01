@@ -1,6 +1,7 @@
 package com.p5.adoptions.controllers;
 
 
+import com.p5.adoptions.repository.cats.Cat;
 import com.p5.adoptions.repository.shelters.AnimalShelter;
 import com.p5.adoptions.service.AnimalShelterService;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,11 @@ public class AnimalShelterController {
         return ResponseEntity.ok(animalShelterService.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<AnimalShelter> getShelter (@PathVariable("id") Integer id){
+        return  ResponseEntity.ok(animalShelterService.findById(id));
+    }
+
     @PostMapping()
     public ResponseEntity<AnimalShelter> createShelter(@RequestBody AnimalShelter animalShelter){
         return ResponseEntity.ok(animalShelterService.createShelter(animalShelter));
@@ -39,6 +45,18 @@ public class AnimalShelterController {
         animalShelterService.deleteShelter(id);
         return ResponseEntity.status(HttpStatus.GONE).build();
     }
+
+    @GetMapping ("/{shelterId}/cats")
+    public ResponseEntity<List<Cat>> getCatsForShelter(@PathVariable ("shelterId") Integer shelterId){
+
+        return ResponseEntity.ok(animalShelterService.findAllCatsByShelter(shelterId));
+    }
+
+    @PutMapping("/{shelterId}/cats")
+    public ResponseEntity<List<Cat>> addNewCatToShelter (@PathVariable("shelterId") Integer shelterId, @RequestBody Cat cat){
+        return ResponseEntity.ok(animalShelterService.addNewCatToShelter(shelterId, cat));
+    }
+
 
 
 }

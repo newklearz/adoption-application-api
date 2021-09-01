@@ -17,6 +17,7 @@ public class AnimalShelter
 
     @Column(unique = true, name = "name")
     private String name;
+
     @Column(name="location")
     private String location;
 
