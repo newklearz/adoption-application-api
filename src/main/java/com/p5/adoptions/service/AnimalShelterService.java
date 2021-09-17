@@ -54,7 +54,8 @@ public class AnimalShelterService {
         return ShelterAdapter.toDTO(savedShelter);
     }
 
-    private void validateShelterLocation(ShelterDTO animalShelter) {
+    // public for Test visibility
+    public void validateShelterLocation(ShelterDTO animalShelter) {
         String location = animalShelter.getLocation().toLowerCase(Locale.ROOT);
 
         if (!location.contains("brasov") && !location.contains("iasi")) {
